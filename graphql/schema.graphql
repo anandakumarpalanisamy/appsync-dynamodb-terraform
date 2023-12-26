@@ -1,0 +1,33 @@
+type Note {
+  NoteId: ID!
+  title: String
+  content: String
+  likes: Int
+  dislikes: Int
+}
+
+type PaginatedNotes {
+  notes: [Note!]!
+  nextToken: String
+}
+
+type Query {
+  allNotes(limit: Int, nextToken: String): PaginatedNotes!
+  getNote(NoteId: ID!): Note
+}
+
+type Mutation {
+  saveNote(
+    NoteId: ID!
+    title: String!
+    content: String!
+    likes: Int
+    dislikes: Int
+  ): Note
+  deleteNote(NoteId: ID!): Note
+}
+
+type Schema {
+  query: Query
+  mutation: Mutation
+}
